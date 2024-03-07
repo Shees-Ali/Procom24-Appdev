@@ -77,6 +77,7 @@ export class AuthenticationPage extends BasePage implements OnInit {
         console.log(user);
         if (user) {
           this.utility.hideLoader();
+          this.nav.navigateTo("dashboard");
         }
       })
       .catch((err) => {
