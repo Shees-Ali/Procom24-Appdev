@@ -8,6 +8,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { StorageService } from 'src/app/services/basic/storage.service';
 import { FormBuilder } from '@angular/forms';
 import { FormErrorsService } from 'src/app/services/basic/form-errors.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/database/user.service';
 
 export abstract class BasePage {
   public formErrors: FormErrorsService;
@@ -20,6 +22,8 @@ export abstract class BasePage {
   public domSanitizer: DomSanitizer;
   public storageService: StorageService;
   public platform: Platform;
+  public authService: AuthService;
+  public userService: UserService;
 
   constructor(injector: Injector) {
     this.formErrors = injector.get(FormErrorsService);
@@ -32,5 +36,7 @@ export abstract class BasePage {
     this.menuCtrl = injector.get(MenuController);
     this.storageService = injector.get(StorageService);
     this.domSanitizer = injector.get(DomSanitizer);
+    this.authService = injector.get(AuthService);
+    this.userService = injector.get(UserService);
   }
 }
