@@ -1,0 +1,7 @@
+{
+  "name": "Procom24-Appdev",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
