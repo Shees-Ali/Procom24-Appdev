@@ -66,14 +66,12 @@ export class FirebaseService {
         listQuery = query(
           ref(this.database, route),
           limitToFirst(limit),
-          orderByChild('name'),
           startAfter(last_item)
         );
       } else {
         listQuery = query(
           ref(this.database, route),
           limitToFirst(limit),
-          orderByChild('name')
         );
       }
       off(listQuery);
@@ -87,124 +85,6 @@ export class FirebaseService {
           array = array.filter((x) => x.type == filter);
         }
         resolve(array);
-      });
-    });
-  }
-
-  listStudents() {
-    return new Promise<any>((resolve) => {
-      let listQuery;
-      let array: any[] = [];
-
-      listQuery = query(
-        ref(this.database, 'users'),
-        orderByChild('role'),
-        equalTo('student')
-      );
-      off(listQuery);
-      onValue(listQuery, (snapshot) => {
-        snapshot.forEach((childSnapshot) => {
-          const childData = childSnapshot.val();
-          childData['key'] = childSnapshot.key;
-          array.push(childData);
-        });
-        resolve(array);
-      });
-    });
-  }
-
-  listApplicationsByScholarship(scholarship_id: string) {
-    return new Promise<any>((resolve) => {
-      let array: any[] = [];
-      let listQuery = query(
-        ref(this.database, 'applications'),
-        orderByChild('scholarship_id'),
-        equalTo(scholarship_id)
-      );
-      off(listQuery);
-      onValue(listQuery, (snapshot) => {
-        snapshot.forEach((childSnapshot) => {
-          const childData = childSnapshot.val();
-          childData['key'] = childSnapshot.key;
-          array.push(childData);
-        });
-        resolve(array);
-      });
-    });
-  }
-
-  listApplicationsByUserID(user_id: string, limit: number) {
-    return new Promise<any>((resolve) => {
-      let array: any[] = [];
-      let listQuery = query(
-        ref(this.database, 'applications'),
-        limitToFirst(limit),
-        orderByChild('student_id'),
-        equalTo(user_id)
-      );
-      off(listQuery);
-      onValue(listQuery, (snapshot) => {
-        snapshot.forEach((childSnapshot) => {
-          const childData = childSnapshot.val();
-          childData['key'] = childSnapshot.key;
-          array.push(childData);
-        });
-        resolve(array);
-      });
-    });
-  }
-
-  listSponsorsByUserID(user_id: string, limit: number) {
-    return new Promise<any>((resolve) => {
-      let array: any[] = [];
-      let listQuery = query(
-        ref(this.database, 'sponsorships'),
-        limitToFirst(limit),
-        orderByChild('student_id'),
-        equalTo(user_id)
-      );
-      off(listQuery);
-      onValue(listQuery, (snapshot) => {
-        snapshot.forEach((childSnapshot) => {
-          const childData = childSnapshot.val();
-          childData['key'] = childSnapshot.key;
-          array.push(childData);
-        });
-        resolve(array);
-      });
-    });
-  }
-
-  checkApplication(student_id: string, scholarship_id: string) {
-    return new Promise<boolean>((resolve) => {
-      let listQuery = query(
-        ref(this.database, 'applications'),
-        orderByChild('student_id'),
-        equalTo(student_id)
-      );
-      off(listQuery);
-      onValue(listQuery, (snapshot) => {
-        snapshot.forEach((childSnapshot) => {
-          const childData = childSnapshot.val();
-          if (childData.scholarship_id == scholarship_id) {
-            resolve(false);
-          } else {
-            resolve(true);
-          }
-        });
-      });
-    });
-  }
-
-  getStudentParticulars(student_id: string) {
-    return new Promise<boolean>((resolve) => {
-      let listQuery = query(
-        ref(this.database, `students/${student_id}/particulars_of_applicant`)
-      );
-      off(listQuery);
-      onValue(listQuery, (snapshot) => {
-        // console.log(snapshot.val());
-        resolve(snapshot.val());
       });
     });
   }

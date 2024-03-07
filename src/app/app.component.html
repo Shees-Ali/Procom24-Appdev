@@ -5,19 +5,15 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content id="main">
+  <ion-content>
     <ion-list class="menu-list">
       <ion-item class="clickable ion-activatable">
         <ion-icon class="ion-padding-end" name="timer-outline"></ion-icon>
-        <ion-text> Appointments History </ion-text>
+        <ion-text> Teams </ion-text>
       </ion-item>
-      <ion-item class="clickable ion-activatable">
+      <ion-item (click)="goTo('edit-profile')" class="clickable ion-activatable">
         <ion-icon class="ion-padding-end" name="create-outline"></ion-icon>
         <ion-text> Edit Profile </ion-text>
-      </ion-item>
-      <ion-item class="clickable ion-activatable">
-        <ion-icon class="ion-padding-end" name="trash-outline"></ion-icon>
-        <ion-text> Delete Account </ion-text>
       </ion-item>
       <ion-item class="clickable ion-activatable">
         <ion-icon class="ion-padding-end" name="log-out-outline"></ion-icon>
@@ -28,5 +24,5 @@
 </ion-menu>
 
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

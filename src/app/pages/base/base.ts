@@ -10,6 +10,7 @@ import { FormBuilder } from '@angular/forms';
 import { FormErrorsService } from 'src/app/services/basic/form-errors.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/database/user.service';
+import { SkillService } from 'src/app/services/database/skills.service';
 
 export abstract class BasePage {
   public formErrors: FormErrorsService;
@@ -24,6 +25,7 @@ export abstract class BasePage {
   public platform: Platform;
   public authService: AuthService;
   public userService: UserService;
+  public skillService: SkillService;
 
   constructor(injector: Injector) {
     this.formErrors = injector.get(FormErrorsService);
@@ -38,5 +40,6 @@ export abstract class BasePage {
     this.domSanitizer = injector.get(DomSanitizer);
     this.authService = injector.get(AuthService);
     this.userService = injector.get(UserService);
+    this.skillService = injector.get(SkillService);
   }
 }

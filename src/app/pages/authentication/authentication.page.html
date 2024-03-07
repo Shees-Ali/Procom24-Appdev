@@ -3,49 +3,43 @@
         <ion-list>
 
             <ion-item>
-                <ion-label position="floating">Last Name:</ion-label>
-                <ion-input formControlName="last_name" required></ion-input>
+                <ion-input labelPlacement="floating" label="Last Name" formControlName="last_name" required></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-label position="floating">First Name:</ion-label>
-                <ion-input formControlName="first_name" required></ion-input>
-            </ion-item>
-
-
-            <ion-item>
-                <ion-label position="floating">Password:</ion-label>
-                <ion-input formControlName="password" type="password" required></ion-input>
+                <ion-input labelPlacement="floating" label="First Name" formControlName="first_name"
+                    required></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-label position="floating">Email:</ion-label>
-                <ion-input type="email" formControlName="email" required></ion-input>
+                <ion-input labelPlacement="floating" label="Password" formControlName="password" type="password"
+                    required></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-label position="floating">Photo URL:</ion-label>
-                <ion-input formControlName="photoURL"></ion-input>
+                <ion-input labelPlacement="floating" label="Email" type="email" formControlName="email"
+                    required></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-label position="floating">CNIC:</ion-label>
-                <ion-input formControlName="cnic" required></ion-input>
+                <ion-input labelPlacement="floating" label="Photo URL" formControlName="photoURL"></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-label position="floating">Country:</ion-label>
-                <ion-input formControlName="country" required></ion-input>
+                <ion-input labelPlacement="floating" label="CNIC" formControlName="cnic" required></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-label position="floating">City:</ion-label>
-                <ion-input formControlName="city" required></ion-input>
+                <ion-input labelPlacement="floating" label="Country" formControlName="country" required></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-label position="floating">Age:</ion-label>
-                <ion-input type="number" formControlName="age" required></ion-input>
+                <ion-input labelPlacement="floating" label="City" formControlName="city" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-input labelPlacement="floating" label="Age" type="number" formControlName="age"
+                    required></ion-input>
             </ion-item>
 
         </ion-list>
@@ -66,10 +60,12 @@
     <form *ngIf="!isSignUp" [formGroup]="signInForm" (ngSubmit)="onLogin()">
         <ion-list>
             <ion-item>
-                <ion-input label="Email" type="email" formControlName="email" required></ion-input>
+                <ion-input labelPlacement="floating" label="Email" type="email" formControlName="email"
+                    required></ion-input>
             </ion-item>
             <ion-item>
-                <ion-input label="Password" formControlName="password" type="password" required></ion-input>
+                <ion-input labelPlacement="floating" label="Password" formControlName="password" type="password"
+                    required></ion-input>
             </ion-item>
         </ion-list>
 
