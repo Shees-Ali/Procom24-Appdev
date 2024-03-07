@@ -1,0 +1,37 @@
+.header {
+    height: 150px;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background: #293132;
+    border-radius: 0 0 25px 25px;
+  
+    h5 {
+      font-size: 8px;
+      color: #fff017;
+      position: relative;
+      bottom: 15px;
+      left: 5px;
+    }
+  
+    img {
+      height: 150px;
+      width: 100%;
+      object-fit: cover;
+      opacity: 60%;
+      border-radius: 0 0 25px 25px;
+    }
+    .main-img {
+      position: relative;
+      img {
+        height: 110px;
+        opacity: 100%;
+        width: 110px;
+        border-radius: 50%;
+      }
+    }
+  }
+  

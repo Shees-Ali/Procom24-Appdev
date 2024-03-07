@@ -7,6 +7,11 @@
 
   <ion-content>
     <ion-list class="menu-list">
+
+      <ion-item (click)="goTo('dashboard')" class="clickable ion-activatable">
+        <ion-icon class="ion-padding-end" name="create-outline"></ion-icon>
+        <ion-text> Dashboard </ion-text>
+      </ion-item>
       <ion-item class="clickable ion-activatable">
         <ion-icon class="ion-padding-end" name="timer-outline"></ion-icon>
         <ion-text> Teams </ion-text>
@@ -15,7 +20,7 @@
         <ion-icon class="ion-padding-end" name="create-outline"></ion-icon>
         <ion-text> Edit Profile </ion-text>
       </ion-item>
-      <ion-item class="clickable ion-activatable">
+      <ion-item (click)="logOut()" class="clickable ion-activatable">
         <ion-icon class="ion-padding-end" name="log-out-outline"></ion-icon>
         <ion-text> Log out </ion-text>
       </ion-item>

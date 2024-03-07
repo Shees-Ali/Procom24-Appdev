@@ -1,6 +1,7 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { BasePage } from '../base/base';
 import { FormGroup, Validators } from '@angular/forms';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
   selector: 'app-edit-profile',
@@ -10,6 +11,7 @@ import { FormGroup, Validators } from '@angular/forms';
 export class EditProfilePage extends BasePage implements OnInit {
   User?: any;
   profileForm: FormGroup<any>;
+  profileImage: string = '';
   Skills: any[] = [
     {
       skill: 'Batting',
@@ -43,6 +45,7 @@ export class EditProfilePage extends BasePage implements OnInit {
   }
 
   async getCurrentUser() {
+    this.utility.showLoader();
     const res = await this.userService.getCurrentUser();
     console.log(res);
     if (res) {
@@ -60,16 +63,52 @@ export class EditProfilePage extends BasePage implements OnInit {
       if (this.User.skills) {
         this.Skills = this.User.skills;
       }
+      if (this.User.photoURL !== "") {
+        this.profileImage = this.User.photoURL;
+      }
     }
+    this.utility.hideLoader();
   }
 
   async save() {
     this.utility.showLoader();
     await this.skillService.setSkillsData(this.User.user_id, this.Skills);
-    await this.userService.updateUser(
-      this.User.user_id,
-      this.profileForm.value
-    );
+    const form = this.profileForm.value;
+    if (this.profileImage !== '') {
+      form.photoURL = this.profileImage;
+    }
+    console.log(form);
+    await this.userService.updateUser(this.User.user_id, form);
     this.utility.hideLoader();
+    this.utility.presentSuccessToast("User Profile Updated!");
+  }
+
+  async onProfileFileChange($event: any) {
+    if ($event.target.files && $event.target.files[0]) {
+      var reader = new FileReader();
+      reader.readAsDataURL($event.target.files[0]); // read file as data url
+      reader.onload = (event: any) => {
+        // called once readAsDataURL is completed
+        if (event.target.result) {
+          let f = event.target.result;
+          this.profileImage = f;
+        }
+      };
+    }
+  }
+
+  updateMyProfileImage() {
+    if (Capacitor.isNativePlatform()) {
+      this.imageService.getPhoto().then((img) => {
+        if (img) {
+          this.profileImage = img;
+        }
+      });
+    } else {
+      let element: HTMLElement = document.getElementById(
+        'imagefile'
+      ) as HTMLElement;
+      element.click();
+    }
   }
 }

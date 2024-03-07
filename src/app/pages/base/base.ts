@@ -11,6 +11,7 @@ import { FormErrorsService } from 'src/app/services/basic/form-errors.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/database/user.service';
 import { SkillService } from 'src/app/services/database/skills.service';
+import { ImageService } from 'src/app/services/image.service';
 
 export abstract class BasePage {
   public formErrors: FormErrorsService;
@@ -23,6 +24,7 @@ export abstract class BasePage {
   public domSanitizer: DomSanitizer;
   public storageService: StorageService;
   public platform: Platform;
+  public imageService: ImageService;
   public authService: AuthService;
   public userService: UserService;
   public skillService: SkillService;
@@ -41,5 +43,6 @@ export abstract class BasePage {
     this.authService = injector.get(AuthService);
     this.userService = injector.get(UserService);
     this.skillService = injector.get(SkillService);
+    this.imageService = injector.get(ImageService);
   }
 }

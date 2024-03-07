@@ -2,7 +2,16 @@
 
 <ion-content [fullscreen]="true">
 
+
+
   <form [formGroup]="profileForm">
+    <div class="header">
+      <div class="main-img">
+        <img [src]="profileImage ? profileImage : 'assets/images/default2.png'" alt=""
+          (click)="updateMyProfileImage()" />
+        <input type="file" (change)="onProfileFileChange($event)" hidden id="imagefile" />
+      </div>
+    </div>
     <ion-list>
       <ion-item>
         <ion-input labelPlacement="floating" label="Last Name" formControlName="last_name" required></ion-input>
