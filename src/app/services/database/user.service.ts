@@ -19,7 +19,7 @@ export class UserService {
   }
 
   getUserData(user_id: string | undefined) {
-    return this.firebase.getDataOnValue('users/' + user_id);
+    return this.firebase.getDataOnce('users/' + user_id);
   }
 
   updateUser(user_id: string | undefined, update: any) {

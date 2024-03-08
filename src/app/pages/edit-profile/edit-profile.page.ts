@@ -47,7 +47,7 @@ export class EditProfilePage extends BasePage implements OnInit {
   }
 
   async getCurrentUser() {
-    // this.utility.showLoader();
+    this.utility.showLoader();
     const res = await this.userService.getCurrentUser();
     console.log(res);
     if (res) {

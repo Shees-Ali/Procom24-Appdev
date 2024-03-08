@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   Database,
   equalTo,
+  get,
   limitToFirst,
   off,
   onValue,
@@ -41,6 +42,15 @@ export class FirebaseService {
     });
   }
 
+  getDataOnce(route: string) {
+    return new Promise<any>(async (resolve) => {
+      const dBref = ref(this.database, route);
+      const snapshot = await get(dBref);
+      const data = snapshot.val();
+      resolve(data);
+    });
+  }
+  
   updateData(route: string, data: any) {
     return update(ref(this.database, route), data);
   }
@@ -122,7 +132,7 @@ export class FirebaseService {
           array.push(childData);
         });
         if (user_id && user_id !== '') {
-          array = array.filter((x) => x.user_id == user_id);
+          array = array.filter((x) => x.user_id !== user_id);
         }
         resolve(array);
       });
