@@ -47,29 +47,33 @@ export class EditProfilePage extends BasePage implements OnInit {
   }
 
   async getCurrentUser() {
-    this.utility.showLoader();
-    const res = await this.userService.getCurrentUser();
-    console.log(res);
-    if (res) {
-      this.User = res;
-      this.profileForm.patchValue({
-        last_name: this.User.last_name || '',
-        first_name: this.User.first_name || '',
-        email: this.User.email || '',
-        photoURL: this.User.photoURL || '',
-        cnic: this.User.cnic || '',
-        country: this.User.country || '',
-        city: this.User.city || '',
-        age: this.User.age || '',
-      });
-      if (this.User.skills) {
-        this.Skills = this.User.skills;
+    try {
+      this.utility.showLoader();
+      const res = await this.userService.getCurrentUser();
+      console.log(res);
+      if (res) {
+        this.User = res;
+        this.profileForm.patchValue({
+          last_name: this.User.last_name || '',
+          first_name: this.User.first_name || '',
+          email: this.User.email || '',
+          photoURL: this.User.photoURL || '',
+          cnic: this.User.cnic || '',
+          country: this.User.country || '',
+          city: this.User.city || '',
+          age: this.User.age || '',
+        });
+        if (this.User.skills) {
+          this.Skills = this.User.skills;
+        }
+        if (this.User.photoURL !== "") {
+          this.profileImage = this.User.photoURL;
+        }
       }
-      if (this.User.photoURL !== "") {
-        this.profileImage = this.User.photoURL;
-      }
+      this.utility.hideLoader();
+    } catch (error) {
+      this.utility.hideLoader();
     }
-    this.utility.hideLoader();
   }
 
   async save() {
