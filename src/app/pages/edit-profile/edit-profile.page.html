@@ -40,11 +40,16 @@
       <ion-item>
         <ion-input labelPlacement="floating" label="Age" type="number" formControlName="age" required></ion-input>
       </ion-item>
+
+      <ion-item>
+        <ion-select label="Speciality" formControlName="userSpeciality">
+          <ion-select-option *ngFor="let item of Specialities" [value]="item">{{item}}</ion-select-option>
+        </ion-select>
+      </ion-item>
     </ion-list>
   </form>
 
-
-  <ion-row class="ion-justify-content-center ion-align-content-center">
+  <ion-row>
     <ion-col size="12">
       <ion-text>Skills</ion-text>
       <ion-row *ngFor="let item of Skills; let i =index">

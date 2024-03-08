@@ -26,6 +26,10 @@ export class UserService {
     return this.firebase.updateData('users/' + user_id, update);
   }
 
+  getUsersList(limit: number, last_item = undefined, filter: string = '') {
+    return this.firebase.listData('users', limit, last_item, filter);
+  }
+
   getCurrentUser() {
     return new Promise<any>(async (resolve) => {
       const string = await this.storage.get('user');

@@ -26,6 +26,7 @@ export class EditProfilePage extends BasePage implements OnInit {
       rating: 0,
     },
   ];
+  Specialities: string[] = ['Wicket Keeper + Batsman', 'Batsman', 'Bowler'];
   constructor(injector: Injector) {
     super(injector);
     this.profileForm = this.formBuilder.group({
@@ -37,6 +38,7 @@ export class EditProfilePage extends BasePage implements OnInit {
       country: ['', Validators.required],
       city: ['', Validators.required],
       age: ['', Validators.required],
+      userSpeciality: ['', Validators.required]
     });
   }
 

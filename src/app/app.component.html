@@ -12,9 +12,13 @@
         <ion-icon class="ion-padding-end" name="create-outline"></ion-icon>
         <ion-text> Dashboard </ion-text>
       </ion-item>
-      <ion-item class="clickable ion-activatable">
+      <ion-item (click)="goTo('teams')" class="clickable ion-activatable">
         <ion-icon class="ion-padding-end" name="timer-outline"></ion-icon>
         <ion-text> Teams </ion-text>
+      </ion-item>
+      <ion-item (click)="goTo('leagues')" class="clickable ion-activatable">
+        <ion-icon class="ion-padding-end" name="timer-outline"></ion-icon>
+        <ion-text> Leagues </ion-text>
       </ion-item>
       <ion-item (click)="goTo('edit-profile')" class="clickable ion-activatable">
         <ion-icon class="ion-padding-end" name="create-outline"></ion-icon>

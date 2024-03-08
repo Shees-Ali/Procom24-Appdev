@@ -11,6 +11,8 @@ import { FormErrorsService } from 'src/app/services/basic/form-errors.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/database/user.service';
 import { SkillService } from 'src/app/services/database/skills.service';
+import { TeamService } from 'src/app/services/database/teams.service';
+import { LeagueService } from 'src/app/services/database/leagues.service';
 import { ImageService } from 'src/app/services/image.service';
 
 export abstract class BasePage {
@@ -28,6 +30,8 @@ export abstract class BasePage {
   public authService: AuthService;
   public userService: UserService;
   public skillService: SkillService;
+  public leagueService: LeagueService;
+  public teamService: TeamService;
 
   constructor(injector: Injector) {
     this.formErrors = injector.get(FormErrorsService);
@@ -44,5 +48,7 @@ export abstract class BasePage {
     this.userService = injector.get(UserService);
     this.skillService = injector.get(SkillService);
     this.imageService = injector.get(ImageService);
+    this.leagueService = injector.get(LeagueService);
+    this.teamService = injector.get(TeamService);
   }
 }

@@ -16,4 +16,8 @@ export class SkillService {
   getSkillsData(user_id: string | undefined) {
     return this.firebase.getDataOnValue('users/' + user_id + '/skills');
   }
+
+  setSpecialities(user_id: string, skills: any) {
+    return this.firebase.setData('users/' + user_id + '/specialities/', skills);
+  }
 }
