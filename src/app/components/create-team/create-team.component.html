@@ -1,0 +1,22 @@
+<header [title]="'My Team'" [showBack]="true"></header>
+
+<ion-content>
+
+
+  <ion-input [(ngModel)]="CreateForm.teamName"></ion-input>
+
+  <div class="users-div">
+    <ion-list *ngIf="!UsersLoading">
+      <ion-item *ngFor="let item of UsersList">
+        <ion-label>{{item.first_name + " " + item.last_name}}</ion-label>
+        <ion-text>Speciality: {{item.userSpeciality}}</ion-text>
+        <ion-button (click)="addtoteam()" slot="end" fill="clear">
+          <ion-icon name="add"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+    <ion-spinner *ngIf=""></ion-spinner>
+  </div>
+
+
+</ion-content>
