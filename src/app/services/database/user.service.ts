@@ -36,7 +36,6 @@ export class UserService {
       'users',
       limit,
       last_item,
-      filter,
       user.user_id
     );
   }

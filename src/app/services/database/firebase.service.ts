@@ -93,7 +93,6 @@ export class FirebaseService {
     route: string,
     limit: number = 5,
     last_item: any = undefined,
-    filter: string = '',
     user_id: string = ''
   ) {
     return new Promise<any>((resolve) => {
@@ -105,7 +104,7 @@ export class FirebaseService {
           limitToFirst(limit),
           startAfter(last_item),
           orderByChild('isUpdated'),
-          equalTo(true),
+          equalTo(true)
         );
       } else {
         listQuery = query(
@@ -122,8 +121,8 @@ export class FirebaseService {
           childData['key'] = childSnapshot.key;
           array.push(childData);
         });
-        if (filter && filter !== '') {
-          array = array.filter((x) => x.type == filter);
+        if (user_id && user_id !== '') {
+          array = array.filter((x) => x.user_id == user_id);
         }
         resolve(array);
       });

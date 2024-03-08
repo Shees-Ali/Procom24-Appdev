@@ -5,12 +5,10 @@ import { FirebaseService } from './firebase.service';
   providedIn: 'root',
 })
 export class TeamService {
-  constructor(
-    private firebase: FirebaseService,
-  ) {}
+  constructor(private firebase: FirebaseService) {}
 
-  setteamData(team: any) {
-    return this.firebase.pushData('teams/', team);
+  setteamData(user_id: any, team: any) {
+    return this.firebase.setData('teams/' + user_id, team);
   }
 
   updateteam(team_id: string | undefined, update: any) {

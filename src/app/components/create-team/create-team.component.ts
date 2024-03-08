@@ -10,13 +10,14 @@ import { BasePage } from 'src/app/pages/base/base';
 export class CreateTeamComponent extends BasePage implements OnInit {
   UsersList: any[] = [];
   LastUser: any = undefined;
+  User: any;
   CreateForm: any = {
     teamName: '',
     batsmanCount: 0,
     bowlerCount: 0,
     wicketBatsmanCount: 0,
     players: [],
-    team_owner: ''
+    team_owner: '',
   };
   UsersLoading: boolean = false;
   constructor(injector: Injector) {
@@ -28,15 +29,14 @@ export class CreateTeamComponent extends BasePage implements OnInit {
     this.getMyTeam();
   }
 
-  async getMyTeam() {
-    
-  }
+  async getMyTeam() {}
 
   async Init() {
     this.UsersLoading = true;
     this.UsersList = await this.userService.getUsersList(10, this.LastUser);
     const user = await this.userService.getCurrentUser();
     console.log(user);
+    this.User = user;
     this.CreateForm.team_owner = user.user_id;
     this.UsersLoading = false;
   }
@@ -74,9 +74,7 @@ export class CreateTeamComponent extends BasePage implements OnInit {
     });
   }
 
-  remove(user:any) {
-
-  }
+  remove(user: any) {}
 
   getIfPlayerInTeam(user: any) {
     const index = this.CreateForm.players.findIndex(
@@ -89,8 +87,8 @@ export class CreateTeamComponent extends BasePage implements OnInit {
   }
 
   async saveTeam() {
-    this.utility.showLoader("Creating Team");
-    await this.teamService.setteamData(this.CreateForm);
+    this.utility.showLoader('Creating Team');
+    await this.teamService.setteamData(this.User.user_id, this.CreateForm);
     this.utility.hideLoader();
   }
 }
