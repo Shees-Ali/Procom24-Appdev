@@ -1,13 +1,38 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>leagues</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div class="league-container">
+  <header [title]="'Leagues'" [showMenu]="true"></header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">leagues</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+  <div class="leagues-box">
+    <h2 class="league-header">
+      Available Leagues
+      <div class="action-buttons">
+        <button class="action-button join-button">Join</button>
+        <button class="action-button create-button">Create</button>
+      </div>
+    </h2>
+
+    <ul class="league-list">
+      <li class="league-item">
+        <span class="league-label">League Type 1</span>
+        <div class="league-details">
+          <p>Number of Teams: 8</p>
+          <p>Number of Matches Played: 24</p>
+          <p>Top Teams: Team A, Team B, Team C</p>
+          <p>Tournament Time: June 1 - July 15</p>
+        </div>
+      </li>
+
+      <!-- League 2 -->
+      <li class="league-item">
+        <span class="league-label">League Type 2</span>
+        <div class="league-details">
+          <p>Number of Teams: 10</p>
+          <p>Number of Matches Played: 30</p>
+          <p>Top Teams: Team X, Team Y, Team Z</p>
+          <p>Tournament Time: August 1 - September 15</p>
+        </div>
+      </li>
+
+      <!-- Add more leagues as needed -->
+    </ul>
+  </div>
+</div>

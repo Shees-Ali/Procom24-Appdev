@@ -7,11 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { LeaguesPageRoutingModule } from './leagues-routing.module';
 
 import { LeaguesPage } from './leagues.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ComponentsModule,
     IonicModule,
     LeaguesPageRoutingModule
   ],
