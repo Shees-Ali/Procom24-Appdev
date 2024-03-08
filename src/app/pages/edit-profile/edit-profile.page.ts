@@ -80,6 +80,7 @@ export class EditProfilePage extends BasePage implements OnInit {
       form.photoURL = this.profileImage;
     }
     console.log(form);
+    form['isUpdated'] = true;
     await this.userService.updateUser(this.User.user_id, form);
     this.utility.hideLoader();
     this.utility.presentSuccessToast("User Profile Updated!");

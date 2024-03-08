@@ -89,6 +89,47 @@ export class FirebaseService {
     });
   }
 
+  listUsersData(
+    route: string,
+    limit: number = 5,
+    last_item: any = undefined,
+    filter: string = '',
+    user_id: string = ''
+  ) {
+    return new Promise<any>((resolve) => {
+      let listQuery;
+      let array: any[] = [];
+      if (last_item) {
+        listQuery = query(
+          ref(this.database, route),
+          limitToFirst(limit),
+          startAfter(last_item),
+          orderByChild('isUpdated'),
+          equalTo(true),
+        );
+      } else {
+        listQuery = query(
+          ref(this.database, route),
+          limitToFirst(limit),
+          orderByChild('isUpdated'),
+          equalTo(true)
+        );
+      }
+      off(listQuery);
+      onValue(listQuery, (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+          const childData = childSnapshot.val();
+          childData['key'] = childSnapshot.key;
+          array.push(childData);
+        });
+        if (filter && filter !== '') {
+          array = array.filter((x) => x.type == filter);
+        }
+        resolve(array);
+      });
+    });
+  }
+
   countData(route: string, filter = '') {
     return new Promise<number>((resolve) => {
       let count = 0;

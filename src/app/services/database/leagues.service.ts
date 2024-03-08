@@ -7,8 +7,8 @@ import { FirebaseService } from './firebase.service';
 export class LeagueService {
   constructor(private firebase: FirebaseService) {}
 
-  setleagueData(user_id: string, league: any) {
-    return this.firebase.setData('leagues/' + user_id, league);
+  setleagueData(league: any) {
+    return this.firebase.pushData('leagues/', league);
   }
 
   updateleague(league_id: string | undefined, update: any) {

@@ -9,8 +9,8 @@ export class TeamService {
     private firebase: FirebaseService,
   ) {}
 
-  setteamData(user_id: string, team: any) {
-    return this.firebase.setData('teams/' + user_id, team);
+  setteamData(team: any) {
+    return this.firebase.pushData('teams/', team);
   }
 
   updateteam(team_id: string | undefined, update: any) {
