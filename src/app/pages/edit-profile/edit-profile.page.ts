@@ -26,6 +26,7 @@ export class EditProfilePage extends BasePage implements OnInit {
       rating: 0,
     },
   ];
+  isLoading: boolean = false;
   Specialities: string[] = ['Wicket Keeper + Batsman', 'Batsman', 'Bowler'];
   constructor(injector: Injector) {
     super(injector);
@@ -48,7 +49,7 @@ export class EditProfilePage extends BasePage implements OnInit {
 
   async getCurrentUser() {
     try {
-      this.utility.showLoader();
+      this.isLoading= true;
       const res = await this.userService.getCurrentUser();
       console.log(res);
       if (res) {
@@ -70,14 +71,14 @@ export class EditProfilePage extends BasePage implements OnInit {
           this.profileImage = this.User.photoURL;
         }
       }
-      this.utility.hideLoader();
+      this.isLoading = false;
     } catch (error) {
-      this.utility.hideLoader();
+      this.isLoading = false;
     }
   }
 
   async save() {
-    this.utility.showLoader();
+    this.isLoading = true;
     await this.skillService.setSkillsData(this.User.user_id, this.Skills);
     const form = this.profileForm.value;
     if (this.profileImage !== '') {
@@ -86,7 +87,7 @@ export class EditProfilePage extends BasePage implements OnInit {
     console.log(form);
     form['isUpdated'] = true;
     await this.userService.updateUser(this.User.user_id, form);
-    this.utility.hideLoader();
+    this.isLoading = false;
     this.utility.presentSuccessToast("User Profile Updated!");
   }
 

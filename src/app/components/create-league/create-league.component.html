@@ -1,0 +1,36 @@
+<header [title]="'Create League'" [showBack]="true"></header>
+
+<ion-content>
+  <ion-row class="ion-padding">
+    <ion-col size="12">
+      <ion-input [(ngModel)]="League.leagueName" label="League Name"></ion-input>
+    </ion-col>
+  </ion-row>
+
+  <h3>Teams In Leagues :</h3>
+  <ion-row *ngFor="let team of Teams">
+    <ion-col size="12">
+      
+    </ion-col>
+  </ion-row>
+
+  <h3>Matches In Leagues :</h3>
+  <ion-row *ngFor="let item of League.matches">
+    <ion-col size="12">
+      <ion-input [(ngModel)]="item.matchName" label="Match Title"></ion-input>
+    </ion-col>
+    <ion-col size="12">
+      <ion-input type="number" [(ngModel)]="item.score" label="Match Score"></ion-input>
+    </ion-col>
+    <ion-col size="12">
+      <ion-input [(ngModel)]="item.date" label="Match Date"></ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12">
+      <ion-button (click)="addMatch()">
+          Add Matches
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

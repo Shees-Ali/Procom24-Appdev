@@ -1,6 +1,17 @@
 <div class="league-container">
   <header [title]="'Leagues'" [showMenu]="true"></header>
 
+
+
+  <ion-row>
+    <ion-col size="12">
+      <ion-button fill="clear" expand="block" (click)="CreateMyTeam()">
+        Add League
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
   <div class="leagues-box">
     <h2 class="league-header">
       Available Leagues
